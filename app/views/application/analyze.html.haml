@@ -1,0 +1,20 @@
+- params[:code].lines.each do |line|
+  %code= line
+  %br
+
+%h1 Analysis results
+
+- @analysis_results.each do |(_, result)|
+  .analysis-result
+    %h3 Result
+    - result.feedback.each do |feedback|
+      %h5 Original
+      .analysis-feedback
+        - feedback.src.extract.lines.each do |line|
+          %code= line
+          %br
+      %h5 Example
+      .analysis-feedback
+        - feedback.replacement.lines.each do |line|
+          %code= line
+          %br
