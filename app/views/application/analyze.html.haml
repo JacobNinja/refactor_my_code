@@ -4,11 +4,11 @@
 
 - @analysis_results.each do |(_, result)|
   .analysis-result
-    %h3 Result
+    %h3 #{result.type} Result
     - result.feedback.each do |feedback|
       %h5 Original
       .analysis-feedback
-        = SyntaxHighlighter.highlight(feedback.src.extract).html_safe
+        = SyntaxHighlighter.highlight(pad(feedback.src.extract, feedback.src)).html_safe
       %h5 Example
       .analysis-feedback
-        = SyntaxHighlighter.highlight(feedback.replacement).html_safe
+        = SyntaxHighlighter.highlight(pad(feedback.replacement, feedback.src)).html_safe
