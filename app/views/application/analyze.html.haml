@@ -1,6 +1,4 @@
-- params[:code].lines.each do |line|
-  %code= line
-  %br
+= SyntaxHighlighter.highlight(params[:code]).html_safe
 
 %h1 Analysis results
 
@@ -10,11 +8,7 @@
     - result.feedback.each do |feedback|
       %h5 Original
       .analysis-feedback
-        - feedback.src.extract.lines.each do |line|
-          %code= line
-          %br
+        = SyntaxHighlighter.highlight(feedback.src.extract).html_safe
       %h5 Example
       .analysis-feedback
-        - feedback.replacement.lines.each do |line|
-          %code= line
-          %br
+        = SyntaxHighlighter.highlight(feedback.replacement).html_safe
